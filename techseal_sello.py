@@ -96,15 +96,17 @@ METRICAS_NUCLEO = {
 
 # Nombres alternativos con los que la métrica puede aparecer en tu CSV de referencia.
 ALIAS_REFERENCIA = {
-    "avg_comment_rate": ["avg_comment_rate", "comment_rate", "avg_comment_rate_pct"],
-    "recent_views_per_subscriber": ["recent_views_per_subscriber", "avg_views_last_n_per_subscriber",
-                                    "views_last_n_per_subscriber", "views_last_n_subscribers"],
-    "views_coefficient_variation": ["views_coefficient_variation", "views_cv", "cv_views"],
-    "avg_views_per_day": ["avg_views_per_day", "views_per_day"],
-    "avg_days_between_uploads": ["avg_days_between_uploads", "days_between_uploads"],
-    "stdev_days_between_uploads": ["stdev_days_between_uploads", "std_days_between_uploads"],
+    # Primero los nombres de techseal_data_pipeline.py v3 (métricas de vídeos largos, prefijo long_)
+    "avg_comment_rate": ["long_avg_comment_rate", "avg_comment_rate", "comment_rate"],
+    "recent_views_per_subscriber": ["long_views_per_subscriber", "recent_views_per_subscriber"],
+    "views_coefficient_variation": ["long_views_cv", "views_coefficient_variation", "views_cv"],
+    "avg_views_per_day": ["long_avg_views_per_day", "avg_views_per_day"],
+    "avg_days_between_uploads": ["avg_days_between_uploads"],
+    "stdev_days_between_uploads": ["stdev_days_between_uploads"],
 }
-ALIAS_TIER = ["tier", "Tier", "segmento", "grupo", "nivel"]
+# La columna "tier" del pipeline es por tamaño (pequeño/micro/mid/macro), no por calidad:
+# no sirve para decir "a qué tier se parece" por score, así que se desactiva.
+ALIAS_TIER = []
 
 NIVELES_SELLO = [  # (puntuación mínima, nivel)
     (80, "ORO"),
